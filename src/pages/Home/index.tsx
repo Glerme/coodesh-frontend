@@ -8,7 +8,7 @@ import { Loading } from "components/Loading";
 import { ErrorComponent } from "components/ErrorComponent";
 
 export const HomePage: React.FC = () => {
-  const { data: word, loading, errors } = useFetch<Word[]>("/A");
+  const { data: word, loading, errors } = useFetch<Word[]>("/hello");
 
   console.log(word);
 

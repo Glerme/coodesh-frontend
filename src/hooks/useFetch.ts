@@ -35,7 +35,7 @@ export const useFetch = <T = Record<string, any>>(
         errors: null,
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
 
       setQueryData({
         data: null,

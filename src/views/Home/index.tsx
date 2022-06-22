@@ -3,7 +3,6 @@ import type { Word } from "types/Word";
 import { Player } from "components/Player";
 import { TabList } from "components/TabList";
 import { Meanings } from "components/Meanings";
-import { WordList } from "components/WordList";
 
 import styles from "./styles.module.scss";
 
