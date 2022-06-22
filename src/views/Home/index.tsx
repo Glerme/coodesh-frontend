@@ -37,7 +37,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ word }) => {
 
       <section>
         <TabList labelTabs={["Word List", "Favorites"]}>
-          <div key={1}>{[].map((word) => word)}</div>
+          <div key={1}>{["a"].map((word) => word)}</div>
           <div key={2}>favorites</div>
         </TabList>
       </section>
