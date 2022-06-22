@@ -1,0 +1,15 @@
+.container-audio {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+
+  width: 100%;
+
+  & > audio {
+    border: 1px solid red;
+
+    border-radius: 6px;
+
+    width: 100%;
+  }
+}

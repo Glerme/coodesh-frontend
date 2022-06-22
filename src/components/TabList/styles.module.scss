@@ -1,0 +1,61 @@
+@use 'sass:map';
+@use 'styles/typography.scss';
+@use 'styles/colors.scss';
+@use 'styles/breakpoints.scss';
+@import 'styles/utils/buttons.utilities.scss';
+
+.tablist-buttons-container {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-direction: column;
+
+  gap: 1rem;
+
+  @include breakpoints.and-up(md) {
+    flex-direction: row;
+  }
+}
+
+.tablist-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 0;
+  background-color: transparent;
+
+  font-size: map.get(typography.$sizes, 'b2');
+  font-weight: map.get(typography.$weights, 'b2');
+
+  color: colors.$gray800;
+
+  border-bottom: 1px solid colors.$gray200;
+
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+
+  @include breakpoints.and-up(md) {
+    border-bottom: 0;
+  }
+
+  &:after {
+    @include breakpoints.and-up(md) {
+      content: '|';
+      color: colors.$gray200;
+      margin-left: 1rem;
+    }
+  }
+
+  &:last-child:after {
+    content: '';
+  }
+
+  &:hover {
+    color: colors.$secondary;
+  }
+}
+
+.active-tab {
+  color: colors.$secondary;
+}

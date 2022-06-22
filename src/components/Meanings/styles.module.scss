@@ -1,0 +1,28 @@
+@use "sass:map";
+@use "styles/colors.scss";
+@use "styles/typography.scss";
+@use "styles/breakpoints.scss";
+
+.meanings-container {
+  display: grid;
+  gap: 1rem;
+
+  width: 100%;
+  height: 100%;
+
+  & > h3 {
+    font-size: map.get(typography.$sizes, "h4");
+    font-weight: map.get(typography.$weights, "h4");
+
+    color: colors.$black;
+  }
+}
+
+.buttons-container {
+  display: grid;
+  gap: 1rem;
+
+  @include breakpoints.and-up(md) {
+    grid-template-columns: repeat(auto-fit, minmax(1rem, 1fr));
+  }
+}

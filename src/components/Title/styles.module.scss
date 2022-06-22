@@ -1,0 +1,22 @@
+@use 'sass:map';
+@use 'styles/colors.scss';
+@use 'styles/typography.scss';
+
+.title-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+
+  & > h1 {
+    font-size: map.get(typography.$sizes, 'display');
+    font-weight: map.get(typography.$weights, 'display');
+  }
+}
+
+.primary {
+  color: colors.$primary;
+}
+
+.secondary {
+  color: colors.$black;
+}

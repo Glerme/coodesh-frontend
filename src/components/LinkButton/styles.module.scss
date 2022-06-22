@@ -1,0 +1,38 @@
+@use 'sass:map';
+@use 'styles/typography.scss';
+@import 'styles/utils/buttons.utilities.scss';
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  border-radius: 6px;
+
+  font-size: map.get(typography.$sizes, 'b4');
+  font-weight: map.get(typography.$weights, 'b4');
+
+  padding: 0.5rem 1rem;
+  width: 100%;
+
+  transition: filter 0.2s, background 0.2s, color 0.2s;
+
+  cursor: pointer;
+
+  text-decoration: none;
+  text-align: center;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+
+  &:active {
+    transform: translate(2px, 3px);
+  }
+
+  &:disabled {
+    opacity: 0.85;
+    cursor: not-allowed;
+  }
+}

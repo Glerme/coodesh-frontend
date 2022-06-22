@@ -1,0 +1,62 @@
+@use '../breakpoints.scss';
+
+// TEMPLATE COLUMNS
+.col-1 {
+  display: grid;
+  grid-template-columns: 1fr !important;
+}
+
+.col-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) !important;
+}
+
+.col-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.col-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+
+// COLUMN START
+
+.column-start {
+  grid-column-start: 1;
+}
+
+// COLUMN SPAN
+
+.span-2 {
+  grid-column: initial;
+
+  @include breakpoints.and-up(md) {
+    grid-column: span 2;
+  }
+}
+
+.span-3 {
+  grid-column: initial;
+
+  @include breakpoints.and-up(md) {
+    grid-column: span 2;
+  }
+
+  @include breakpoints.and-up(lg) {
+    grid-column: span 3;
+  }
+}
+
+.span-4 {
+  grid-column: initial;
+
+  @include breakpoints.and-up(md) {
+    grid-column: span 3;
+  }
+
+  @include breakpoints.and-up(lg) {
+    grid-column: span 4;
+  }
+}

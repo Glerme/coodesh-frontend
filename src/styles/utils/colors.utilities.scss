@@ -1,0 +1,48 @@
+@use '../colors.scss';
+
+$all_colors: (
+  white: colors.$white,
+  black: colors.$black,
+  background: colors.$background,
+  gray50: colors.$gray50,
+  gray100: colors.$gray100,
+  gray200: colors.$gray200,
+  gray300: colors.$gray300,
+  gray400: colors.$gray400,
+  gray500: colors.$gray500,
+  gray600: colors.$gray600,
+  gray700: colors.$gray700,
+  gray800: colors.$gray800,
+  primary50: colors.$primary50,
+  primary100: colors.$primary100,
+  primary200: colors.$primary200,
+  primary300: colors.$primary300,
+  primary400: colors.$primary400,
+  primary500: colors.$primary500,
+  primary600: colors.$primary600,
+  primary700: colors.$primary700,
+  primary800: colors.$primary800,
+  primary: colors.$primary,
+  secondary: colors.$secondary,
+  green: colors.$green,
+  title: colors.$title,
+  titleSecondary: colors.$titleSecondary,
+  text: colors.$text,
+  textLight: colors.$textLight,
+);
+
+@each $color, $value in $all_colors {
+  .#{'' + $color} {
+    color: $value;
+  }
+
+  .bg-#{'' + $color} {
+    background-color: $value;
+  }
+
+  .hover-#{'' + $color} {
+    &:hover {
+      color: $value !important;
+    }
+  }
+}
