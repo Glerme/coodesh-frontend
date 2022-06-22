@@ -7,16 +7,27 @@ interface WordMeaningProps {
 
 export const WordMeaning: React.FC<WordMeaningProps> = ({ meaning }) => {
   return (
-    <div>
-      {meaning?.map((meaning, i) => (
-        <div key={i} className={styles[""]}>
-          <p>{meaning?.partOfSpeech ? `${meaning.partOfSpeech},` : "-"}</p>
-          <p>{meaning?.antonyms.map((antonym) => antonym)} </p>
-          <p>{meaning?.synonyms.map((synonym) => synonym)} </p>
-          <p>
+    <div className={styles["meaning-container"]}>
+      {meaning.map((meaning, i) => (
+        <>
+          <div>
+            <p className={styles["part-speech-container"]}>
+              {meaning?.partOfSpeech} /
+            </p>
+          </div>
+
+          <div>
+            <p>{meaning?.antonyms.map((antonym) => antonym)} </p>
+          </div>
+
+          <div>
+            <p>{meaning?.synonyms.map((synonym) => synonym)} </p>
+          </div>
+
+          <div>
             {meaning?.definitions.map((definition) => definition.definition)}
-          </p>
-        </div>
+          </div>
+        </>
       ))}
     </div>
   );
