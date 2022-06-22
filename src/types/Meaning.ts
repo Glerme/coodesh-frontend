@@ -5,7 +5,7 @@ export interface Meanings {
     synonyms: {}[];
     antonyms: {}[];
     example: string;
-  };
+  }[];
   synonyms: string[];
   antonyms: string[];
 }

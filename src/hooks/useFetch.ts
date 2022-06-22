@@ -8,7 +8,8 @@ interface UseFetchReturn<T> {
 
 export const useFetch = <T = Record<string, any>>(
   url: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
+  word?: string | null
 ): UseFetchReturn<T> => {
   const [loading, setLoading] = useState(false);
   const [queryData, setQueryData] = useState<{
@@ -30,7 +31,7 @@ export const useFetch = <T = Record<string, any>>(
 
       const json = await response.json();
 
-      setQueryData({
+      return setQueryData({
         data: json,
         errors: null,
       });
@@ -48,7 +49,7 @@ export const useFetch = <T = Record<string, any>>(
 
   useEffect(() => {
     fetchData(url, options);
-  }, [url]);
+  }, []);
 
   return {
     loading,

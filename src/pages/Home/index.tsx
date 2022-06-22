@@ -7,10 +7,12 @@ import { HomeView } from "views/Home";
 import { Loading } from "components/Loading";
 import { ErrorComponent } from "components/ErrorComponent";
 
-export const HomePage: React.FC = () => {
-  const { data: word, loading, errors } = useFetch<Word[]>("/hello");
+import randomWords from "random-words";
 
-  console.log(word);
+export const HomePage: React.FC = () => {
+  const wordList = randomWords(1);
+
+  const { data: word, loading, errors } = useFetch<Word[]>(`/${wordList}`);
 
   if (loading) {
     return <Loading />;

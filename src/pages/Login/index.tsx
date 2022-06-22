@@ -7,9 +7,11 @@ export const LoginPage: React.FC = () => {
 
   return (
     <main className="centralized-container">
-      <input type="text" />
-      <input type="text" />
-      <Button onClick={() => navigate("/home")}>Entrar</Button>
+      <div>
+        <input type="text" />
+        <input type="text" />
+        <Button onClick={() => navigate("/home")}>Entrar</Button>
+      </div>
     </main>
   );
 };

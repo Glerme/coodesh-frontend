@@ -1,18 +1,17 @@
 import { Button } from "components/Button";
+import { Meanings } from "types/Meaning";
 
 import styles from "./styles.module.scss";
 
-interface MeaningsProps {}
+interface NextWordProps {
+  meanings: Meanings[];
+}
 
-export const Meanings: React.FC<MeaningsProps> = ({}) => {
+export const NextWord: React.FC<NextWordProps> = ({ meanings }) => {
+  console.log(meanings);
+
   return (
     <article className={styles["meanings-container"]}>
-      <h3>Meanings</h3>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam,
-        tempora.
-      </p>
-
       <div className={styles["buttons-container"]}>
         <Button>Voltar</Button>
         <Button>Proximo</Button>

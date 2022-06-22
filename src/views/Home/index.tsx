@@ -2,9 +2,10 @@ import type { Word } from "types/Word";
 
 import { Player } from "components/Player";
 import { TabList } from "components/TabList";
-import { Meanings } from "components/Meanings";
+import { NextWord } from "components/NextWord";
 
 import styles from "./styles.module.scss";
+import { WordMeaning } from "components/WordMeaning";
 
 interface HomeViewProps {
   word: Word[];
@@ -15,10 +16,11 @@ export const HomeView: React.FC<HomeViewProps> = ({ word }) => {
     <main className={styles["view-container"]}>
       <section className={styles["left-container"]}>
         <div className={styles["word-container"]}>
-          <h3>Words</h3>
           <div className={styles["word-content"]}>
-            {word?.map(({ word }, i) => (
-              <h3 key={i}>{word}</h3>
+            {new Set(word?.map(({ word }, i) => <h3 key={i}>{word}</h3>))}
+
+            {word?.map(({ meanings }) => (
+              <WordMeaning meaning={meanings} />
             ))}
           </div>
         </div>
@@ -31,7 +33,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ word }) => {
           )}
         </div>
 
-        <Meanings />
+        <NextWord meanings={word?.flatMap(({ meanings }) => meanings)} />
       </section>
 
       <section>
