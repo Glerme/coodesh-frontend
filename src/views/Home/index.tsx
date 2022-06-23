@@ -12,19 +12,34 @@ import { WordFavorites } from "components/WordFavorites";
 import { ErrorComponent } from "components/ErrorComponent";
 
 import styles from "./styles.module.scss";
+import { generateWords } from "functions/generateWords";
+import { useState } from "react";
 
 export const HomeView: React.FC = () => {
-  const {
-    data,
-    wordList,
-    favoriteWords,
-    refetch,
-    getOneWord,
-    setFavorites,
-    removeFavorites,
-  } = useWord();
+  const [words, setWords] = useState(() => generateWords(100));
+
+  const [wordStep, setWordStep] = useState<string[][]>([[]]);
+
+  const { data, favoriteWords, getOneWord, setFavorites, removeFavorites } =
+    useWord();
+
+  const handleNextStep = () => {
+    const word = generateWords(1);
+
+    setWordStep((oldState) => [...oldState, [...word]]);
+  };
+
+  const handlePreviuousStep = () => {
+    const words = wordStep.pop();
+
+    console.log(words);
+  };
+
+  console.log(wordStep);
 
   const handleNextWord = async (word: string) => {
+    setWords((oldstate) => oldstate.filter((wordOld) => wordOld !== word));
+
     await getOneWord(word);
   };
 
@@ -76,12 +91,15 @@ export const HomeView: React.FC = () => {
           )}
         </div>
 
-        <NextPreviousWords getNextWord={refetch} />
+        <NextPreviousWords
+          getNextWord={handleNextStep}
+          getPrevious={handlePreviuousStep}
+        />
       </section>
 
       <section className={styles["right-container"]}>
         <TabList labelTabs={["Word List", "Favorites"]}>
-          <WordList key={0} wordList={wordList} onClick={handleNextWord} />
+          <WordList key={0} wordList={words} onClick={handleNextWord} />
           <WordFavorites
             key={1}
             onClick={removeFavoriteWord}

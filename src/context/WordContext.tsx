@@ -15,7 +15,6 @@ interface WordContextProps {
     errors: any | null;
     loading: boolean;
   } | null;
-  wordList: string[];
   favoriteWords: string[];
   refetch: () => void;
   getOneWord: (word: string) => Promise<void>;
@@ -25,7 +24,6 @@ interface WordContextProps {
 
 export const WordContext = createContext<WordContextProps>({
   data: null,
-  wordList: [],
   favoriteWords: [],
   refetch: () => {},
   getOneWord: async () => {},
@@ -115,7 +113,6 @@ export const WordContextProvider = ({ children }: WordContextProviderProps) => {
           loading,
           errors,
         },
-        wordList,
         favoriteWords,
         refetch,
         getOneWord,
