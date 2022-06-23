@@ -49,7 +49,13 @@ export const WordContextProvider = ({ children }: WordContextProviderProps) => {
   };
 
   const removeFavorites = (index: number) => {
-    setFavoriteWords((oldState) => oldState.filter((_, i) => i !== index));
+    const removed = favoriteWords.filter((_, i) => i !== index);
+
+    const parsedValue = JSON.stringify(removed);
+
+    localStorage.setItem("favoriteWords", parsedValue);
+
+    setFavoriteWords(removed);
   };
 
   const verifyFavoritesWords = () => {

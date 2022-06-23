@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 import { useWord } from "hooks/useWord";
 
@@ -18,7 +18,6 @@ export const HomeView: React.FC = () => {
     data,
     wordList,
     favoriteWords,
-
     refetch,
     getOneWord,
     setFavorites,
@@ -31,10 +30,18 @@ export const HomeView: React.FC = () => {
 
   const handleFavoriteWord = (word: string) => {
     setFavorites(word);
+
+    toast.success(`Added word to favorites list`, {
+      theme: "dark",
+    });
   };
 
   const removeFavoriteWord = (index: number) => {
     removeFavorites(index);
+
+    toast.warning(`Removed word to favorites list`, {
+      theme: "dark",
+    });
   };
 
   if (data?.loading) {
