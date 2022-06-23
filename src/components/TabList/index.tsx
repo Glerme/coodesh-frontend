@@ -12,7 +12,7 @@ export const TabList: React.FC<TabListProps> = ({ labelTabs, children }) => {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <div>
+    <div className={styles["tablist-container"]}>
       <div className={styles["tablist-buttons-container"]}>
         {labelTabs?.map((label, index) => (
           <button

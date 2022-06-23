@@ -1,8 +1,13 @@
-@use 'sass:map';
-@use 'styles/typography.scss';
-@use 'styles/colors.scss';
-@use 'styles/breakpoints.scss';
-@import 'styles/utils/buttons.utilities.scss';
+@use "sass:map";
+@use "styles/typography.scss";
+@use "styles/colors.scss";
+@use "styles/breakpoints.scss";
+@import "styles/utils/buttons.utilities.scss";
+
+.tablist-container {
+  width: 100%;
+  height: 100%;
+}
 
 .tablist-buttons-container {
   display: flex;
@@ -25,8 +30,8 @@
   border: 0;
   background-color: transparent;
 
-  font-size: map.get(typography.$sizes, 'b2');
-  font-weight: map.get(typography.$weights, 'b2');
+  font-size: map.get(typography.$sizes, "b2");
+  font-weight: map.get(typography.$weights, "b2");
 
   color: colors.$gray800;
 
@@ -41,14 +46,14 @@
 
   &:after {
     @include breakpoints.and-up(md) {
-      content: '|';
+      content: "|";
       color: colors.$gray200;
       margin-left: 1rem;
     }
   }
 
   &:last-child:after {
-    content: '';
+    content: "";
   }
 
   &:hover {
@@ -58,4 +63,9 @@
 
 .active-tab {
   color: colors.$secondary;
+}
+
+.tablist-content-container {
+  background-color: colors.$primary;
+  border-radius: 6px;
 }

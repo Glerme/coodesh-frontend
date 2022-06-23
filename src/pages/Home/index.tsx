@@ -17,7 +17,7 @@ export const HomePage: React.FC = () => {
     loading,
     errors,
     refetch,
-  } = useFetch<Word[]>(`/${wordList}`);
+  } = useFetch<Word[]>(`${wordList}`);
 
   if (loading) {
     return <Loading />;
@@ -27,5 +27,5 @@ export const HomePage: React.FC = () => {
     return <ErrorComponent />;
   }
 
-  return <HomeView word={word} refetch={refetch} />;
+  return <HomeView word={word} refetch={(word) => refetch(word)} />;
 };

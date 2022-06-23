@@ -14,39 +14,41 @@ export const WordMeaning: React.FC<WordMeaningProps> = ({ meaning, word }) => {
         <h1>{word}</h1>
       </div>
 
-      {meaning.map(({ antonyms, definitions, partOfSpeech, synonyms }, i) => (
+      {meaning?.map(({ antonyms, definitions, partOfSpeech, synonyms }, i) => (
         <div key={i} className={styles["word-content"]}>
-          <p className={styles["type-word"]}>{partOfSpeech}</p>
+          <span className={styles["type-word"]}>
+            <p>{partOfSpeech}</p>
+          </span>
 
           {antonyms.length > 0 ? (
-            <p className={styles["type-word"]}>
+            <span className={styles["type-word"]}>
               Antonyms:
-              {antonyms.length > 0 ? <span>{antonyms.join(" / ")}</span> : ""}
-            </p>
+              {antonyms.length > 0 ? <p>{antonyms.join(" / ")}</p> : ""}
+            </span>
           ) : (
             <></>
           )}
 
           {definitions.length > 0 ? (
-            <p className={styles["type-word"]}>
+            <span className={styles["type-word"]}>
               Definitions:
               {definitions.length > 0
-                ? definitions.map((definition, i) => (
-                    <span key={i}>{definition.definition}</span>
+                ? definitions?.map((definition, i) => (
+                    <p key={i}>{definition.definition}</p>
                   ))
                 : ""}
-            </p>
+            </span>
           ) : (
             <></>
           )}
 
           {synonyms.length > 0 ? (
-            <p className={styles["type-word"]}>
+            <span className={styles["type-word"]}>
               Synonyms:
               {synonyms.length > 0
-                ? synonyms.map((synonym, i) => <span key={i}>{synonym}</span>)
+                ? synonyms?.map((synonym, i) => <p>{synonym}</p>)
                 : ""}
-            </p>
+            </span>
           ) : (
             <></>
           )}

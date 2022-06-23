@@ -6,8 +6,6 @@ interface PlayerProps {
 }
 
 export const Player: React.FC<PlayerProps> = ({ phonetic }) => {
-  console.log(phonetic);
-
   return (
     <div className={styles["container-audio"]}>
       <div>

@@ -4,7 +4,7 @@ interface UseFetchReturn<T> {
   data: T;
   loading: boolean;
   errors?: any | null;
-  refetch: () => Promise<void>;
+  refetch: (url: string) => Promise<void>;
 }
 
 export const useFetch = <T = Record<string, any>>(
@@ -20,12 +20,12 @@ export const useFetch = <T = Record<string, any>>(
     errors: null,
   });
 
-  const fetchData = async () => {
+  const fetchData = async (url: string) => {
     try {
       setLoading(true);
 
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}${url}`,
+        `${process.env.REACT_APP_API_URL}/${url}`,
         options
       );
 
@@ -48,7 +48,7 @@ export const useFetch = <T = Record<string, any>>(
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData(url);
   }, []);
 
   const refetch = fetchData;

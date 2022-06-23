@@ -23,9 +23,22 @@ $primary600: #d2661a;
 $primary700: #826754;
 $primary800: #774a2b;
 
+// $primary: $primary500;
+// $secondary: #2c60ab;
+// $green: #43cb75;
+// $background: #f2eeeb;
+
+$blue: #3182ce;
+$orange: #ed8936;
+$green: #48bb78;
+$red: #e53e3e;
+
 $primary: $primary500;
 $secondary: #2c60ab;
-$green: #43cb75;
+$info: $blue;
+$warning: $orange;
+$success: $green;
+$error: $red;
 $background: #f2eeeb;
 
 $title: $primary500;
