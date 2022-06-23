@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "styles/colors.scss";
 @use "styles/typography.scss";
+@use "styles/colors.scss";
 
 .container-audio {
   display: grid;
@@ -15,9 +15,21 @@
   border-radius: 6px;
 
   & > div {
+    width: 100%;
     border-radius: 6px;
 
-    width: 100%;
+    & > p {
+      color: colors.$black;
+
+      & > span {
+        color: colors.$primary;
+
+        font-style: italic;
+
+        font-size: map.get(typography.$sizes, "b2");
+        font-weight: map.get(typography.$weights, "b2");
+      }
+    }
 
     & > audio {
       width: 100%;
