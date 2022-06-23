@@ -1,7 +1,13 @@
 import { Router } from "./Router";
 
+import { WordContextProvider } from "context/WordContext";
+
 import "styles/global.scss";
 
 export const App = () => {
-  return <Router />;
+  return (
+    <WordContextProvider>
+      <Router />;
+    </WordContextProvider>
+  );
 };

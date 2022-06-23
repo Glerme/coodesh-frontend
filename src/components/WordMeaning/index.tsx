@@ -5,11 +5,18 @@ import styles from "./styles.module.scss";
 interface WordMeaningProps {
   meaning: Meanings[];
   word: string;
+  handleFavoriteWord: (word: string) => void;
 }
 
-export const WordMeaning: React.FC<WordMeaningProps> = ({ meaning, word }) => {
+export const WordMeaning: React.FC<WordMeaningProps> = ({
+  meaning,
+  word,
+  handleFavoriteWord,
+}) => {
   return (
     <div className={styles["meaning-container"]}>
+      <button onClick={() => handleFavoriteWord(word)}>Favoritos</button>
+
       <div className={styles["word-container"]}>
         <h1>{word}</h1>
       </div>

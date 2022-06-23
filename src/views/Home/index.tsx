@@ -1,34 +1,66 @@
-import type { Word } from "types/Word";
+import { useEffect, useState } from "react";
+
+import { useWord } from "hooks/useWord";
 
 import { Player } from "components/Player";
+import { Loading } from "components/Loading";
 import { TabList } from "components/TabList";
 import { WordList } from "components/WordList";
 import { WordMeaning } from "components/WordMeaning";
+import { NextPreviousWords } from "components/NextWord";
 import { WordFavorites } from "components/WordFavorites";
+import { ErrorComponent } from "components/ErrorComponent";
 
 import styles from "./styles.module.scss";
 
-interface HomeViewProps {
-  word: Word[];
-  refetch: (word: string) => Promise<void>;
-}
+export const HomeView: React.FC = () => {
+  const {
+    data,
+    wordList,
+    favoriteWords,
 
-export const HomeView: React.FC<HomeViewProps> = ({ word, refetch }) => {
-  const handleNextWord = (word: string) => {
-    refetch(word);
+    refetch,
+    getOneWord,
+    setFavorites,
+    removeFavorites,
+  } = useWord();
+
+  const handleNextWord = async (word: string) => {
+    await getOneWord(word);
   };
+
+  const handleFavoriteWord = (word: string) => {
+    setFavorites(word);
+  };
+
+  const removeFavoriteWord = (index: number) => {
+    removeFavorites(index);
+  };
+
+  if (data?.loading) {
+    return <Loading />;
+  }
+
+  if (data?.errors) {
+    return <ErrorComponent />;
+  }
 
   return (
     <main className={styles["view-container"]}>
       <section className={styles["left-container"]}>
         <div className={styles["word-container"]}>
-          {word?.map(({ meanings, word }, i) => (
-            <WordMeaning meaning={meanings} word={word} key={i} />
+          {data?.words?.map(({ meanings, word }, i) => (
+            <WordMeaning
+              key={i}
+              handleFavoriteWord={handleFavoriteWord}
+              meaning={meanings}
+              word={word}
+            />
           ))}
         </div>
 
         <div className={styles["audio-container"]}>
-          {word?.map(
+          {data?.words?.map(
             ({ phonetics }) =>
               phonetics.length > 0 &&
               phonetics?.map((phonetic, i) => (
@@ -36,17 +68,18 @@ export const HomeView: React.FC<HomeViewProps> = ({ word, refetch }) => {
               ))
           )}
         </div>
-        {/* 
-        <NextWord
-          refetch={refetch(word)}
-          meanings={word?.flatMap(({ meanings }) => meanings)}
-        /> */}
+
+        <NextPreviousWords getNextWord={refetch} />
       </section>
 
       <section className={styles["right-container"]}>
         <TabList labelTabs={["Word List", "Favorites"]}>
-          <WordList key={0} onClick={handleNextWord} />
-          <WordFavorites key={1} onClick={handleNextWord} />
+          <WordList key={0} wordList={wordList} onClick={handleNextWord} />
+          <WordFavorites
+            key={1}
+            onClick={removeFavoriteWord}
+            wordList={favoriteWords}
+          />
         </TabList>
       </section>
     </main>

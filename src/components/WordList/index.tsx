@@ -1,14 +1,11 @@
 import styles from "./styles.module.scss";
 
-import randomWords from "random-words";
-
 interface WordListProps {
+  wordList: string[];
   onClick: (word: string) => void;
 }
 
-export const WordList: React.FC<WordListProps> = ({ onClick }) => {
-  const wordList = randomWords(50);
-
+export const WordList: React.FC<WordListProps> = ({ wordList, onClick }) => {
   return (
     <div className={styles["word-list-container"]}>
       {wordList?.map((word, i) => (
