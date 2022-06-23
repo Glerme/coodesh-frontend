@@ -9,31 +9,33 @@ import { WordMeaning } from "components/WordMeaning";
 
 interface HomeViewProps {
   word: Word[];
+  refetch: () => Promise<void>;
 }
 
-export const HomeView: React.FC<HomeViewProps> = ({ word }) => {
+export const HomeView: React.FC<HomeViewProps> = ({ word, refetch }) => {
   return (
     <main className={styles["view-container"]}>
       <section className={styles["left-container"]}>
         <div className={styles["word-container"]}>
-          <div className={styles["word-content"]}>
-            {new Set(word?.map(({ word }, i) => <h3 key={i}>{word}</h3>))}
-
-            {word?.map(({ meanings }) => (
-              <WordMeaning meaning={meanings} />
-            ))}
-          </div>
+          {word?.map(({ meanings, word }) => (
+            <WordMeaning meaning={meanings} word={word} />
+          ))}
         </div>
 
         <div className={styles["audio-container"]}>
-          {word?.flatMap(({ phonetics }) =>
-            phonetics?.map((phonetic, i) => (
-              <Player key={i} url={phonetic.audio} />
-            ))
+          {word?.map(
+            ({ phonetics }) =>
+              phonetics.length > 0 &&
+              phonetics.map((phonetic, i) => (
+                <Player key={i} phonetic={phonetic} />
+              ))
           )}
         </div>
 
-        <NextWord meanings={word?.flatMap(({ meanings }) => meanings)} />
+        <NextWord
+          refetch={refetch}
+          meanings={word?.flatMap(({ meanings }) => meanings)}
+        />
       </section>
 
       <section>

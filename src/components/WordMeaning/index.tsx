@@ -1,33 +1,56 @@
 import type { Meanings } from "types/Meaning";
 
 import styles from "./styles.module.scss";
+
 interface WordMeaningProps {
   meaning: Meanings[];
+  word: string;
 }
 
-export const WordMeaning: React.FC<WordMeaningProps> = ({ meaning }) => {
+export const WordMeaning: React.FC<WordMeaningProps> = ({ meaning, word }) => {
   return (
     <div className={styles["meaning-container"]}>
-      {meaning.map((meaning, i) => (
-        <>
-          <div>
-            <p className={styles["part-speech-container"]}>
-              {meaning?.partOfSpeech} /
+      <div className={styles["word-container"]}>
+        <h1>{word}</h1>
+      </div>
+
+      {meaning.map(({ antonyms, definitions, partOfSpeech, synonyms }, i) => (
+        <div key={i} className={styles["word-content"]}>
+          <p className={styles["type-word"]}>{partOfSpeech}</p>
+
+          {antonyms.length > 0 ? (
+            <p className={styles["type-word"]}>
+              Antonyms:
+              {antonyms.length > 0 ? <span>{antonyms.join(" / ")}</span> : ""}
             </p>
-          </div>
+          ) : (
+            <></>
+          )}
 
-          <div>
-            <p>{meaning?.antonyms.map((antonym) => antonym)} </p>
-          </div>
+          {definitions.length > 0 ? (
+            <p className={styles["type-word"]}>
+              Definitions:
+              {definitions.length > 0
+                ? definitions.map((definition, i) => (
+                    <span key={i}>{definition.definition}</span>
+                  ))
+                : ""}
+            </p>
+          ) : (
+            <></>
+          )}
 
-          <div>
-            <p>{meaning?.synonyms.map((synonym) => synonym)} </p>
-          </div>
-
-          <div>
-            {meaning?.definitions.map((definition) => definition.definition)}
-          </div>
-        </>
+          {synonyms.length > 0 ? (
+            <p className={styles["type-word"]}>
+              Synonyms:
+              {synonyms.length > 0
+                ? synonyms.map((synonym, i) => <span key={i}>{synonym}</span>)
+                : ""}
+            </p>
+          ) : (
+            <></>
+          )}
+        </div>
       ))}
     </div>
   );

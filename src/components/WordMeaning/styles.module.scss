@@ -1,8 +1,58 @@
+@use "sass:map";
+@use "styles/colors.scss";
+@use "styles/typography.scss";
+
 .meaning-container {
   display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 1rem;
+
+  padding: 1rem;
+
+  border: 1px solid colors.$secondary;
+  border-radius: 6px;
+  background-color: colors.$secondary;
+
+  color: colors.$white;
 }
 
-.part-speech-container {
+.word-container {
+  border-bottom: 1px solid colors.$white;
+
+  text-transform: capitalize;
+
+  & > h1 {
+    font-size: map.get(typography.$sizes, "h1");
+    font-weight: map.get(typography.$weights, "h1");
+  }
+}
+
+.word-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  line-height: 1.3rem;
+}
+
+.word-title-content {
+  display: grid;
+  gap: 1rem;
+}
+
+.type-word {
+  font-size: map.get(typography.$sizes, "b4");
+  font-weight: map.get(typography.$weights, "b4");
+
+  color: wheat;
+
+  & > span {
+    margin-left: 0.5rem;
+    font-style: italic;
+
+    font-size: map.get(typography.$sizes, "b3");
+    font-weight: map.get(typography.$weights, "b3");
+
+    color: colors.$white;
+  }
 }

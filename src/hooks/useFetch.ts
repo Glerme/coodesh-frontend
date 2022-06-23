@@ -4,12 +4,12 @@ interface UseFetchReturn<T> {
   data: T;
   loading: boolean;
   errors?: any | null;
+  refetch: () => Promise<void>;
 }
 
 export const useFetch = <T = Record<string, any>>(
   url: string,
-  options: RequestInit = {},
-  word?: string | null
+  options: RequestInit = {}
 ): UseFetchReturn<T> => {
   const [loading, setLoading] = useState(false);
   const [queryData, setQueryData] = useState<{
@@ -20,7 +20,7 @@ export const useFetch = <T = Record<string, any>>(
     errors: null,
   });
 
-  const fetchData = async (url: string, options: RequestInit = {}) => {
+  const fetchData = async () => {
     try {
       setLoading(true);
 
@@ -48,12 +48,15 @@ export const useFetch = <T = Record<string, any>>(
   };
 
   useEffect(() => {
-    fetchData(url, options);
+    fetchData();
   }, []);
+
+  const refetch = fetchData;
 
   return {
     loading,
     data: queryData.data,
     errors: queryData.errors,
+    refetch,
   };
 };

@@ -5,4 +5,5 @@ export interface Phonetics {
     name: string;
     url: string;
   };
+  text: string;
 }

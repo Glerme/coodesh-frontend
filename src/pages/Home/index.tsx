@@ -12,7 +12,12 @@ import randomWords from "random-words";
 export const HomePage: React.FC = () => {
   const wordList = randomWords(1);
 
-  const { data: word, loading, errors } = useFetch<Word[]>(`/${wordList}`);
+  const {
+    data: word,
+    loading,
+    errors,
+    refetch,
+  } = useFetch<Word[]>(`/${wordList}`);
 
   if (loading) {
     return <Loading />;
@@ -22,5 +27,5 @@ export const HomePage: React.FC = () => {
     return <ErrorComponent />;
   }
 
-  return <HomeView word={word} />;
+  return <HomeView word={word} refetch={refetch} />;
 };

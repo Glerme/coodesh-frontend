@@ -1,16 +1,29 @@
+import { Phonetics } from "types/Phonetic";
 import styles from "./styles.module.scss";
 
 interface PlayerProps {
-  url: string;
+  phonetic: Phonetics;
 }
 
-export const Player: React.FC<PlayerProps> = ({ url }) => {
+export const Player: React.FC<PlayerProps> = ({ phonetic }) => {
+  console.log(phonetic);
+
   return (
     <div className={styles["container-audio"]}>
-      <audio controls>
-        <source src={url} type="audio/ogg" />
-        Your browser dose not Support the audio Tag
-      </audio>
+      <div>
+        {phonetic.text && (
+          <p>
+            Pronunciation: <span>{phonetic.text}</span>
+          </p>
+        )}
+
+        {phonetic.audio && (
+          <audio controls>
+            <source src={phonetic.audio} type="audio/ogg" />
+            Your browser dose not Support the audio Tag
+          </audio>
+        )}
+      </div>
     </div>
   );
 };

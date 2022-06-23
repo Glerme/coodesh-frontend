@@ -1,15 +1,26 @@
+@use "sass:map";
+@use "styles/colors.scss";
+@use "styles/typography.scss";
+
 .container-audio {
   display: grid;
   place-items: center;
   gap: 1rem;
 
+  padding: 1rem;
+
   width: 100%;
 
-  & > audio {
-    border: 1px solid red;
+  border: 1px solid colors.$gray500;
+  border-radius: 6px;
 
+  & > div {
     border-radius: 6px;
 
     width: 100%;
+
+    & > audio {
+      width: 100%;
+    }
   }
 }
