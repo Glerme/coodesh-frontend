@@ -1,7 +1,5 @@
-// Literal Colors
-
 $white: #fcfcfc;
-$black: #292929;
+$black: #1b2430;
 
 $gray50: #e0e0e0;
 $gray100: #cccccc;
@@ -13,36 +11,21 @@ $gray600: #666666;
 $gray700: #525252;
 $gray800: #3d3d3d;
 
-$primary50: #eee0d6;
-$primary100: #ffcaa5;
-$primary200: #e5a97e;
-$primary300: #fea05e;
-$primary400: #fe7819;
-$primary500: #ec6608;
-$primary600: #d2661a;
-$primary700: #826754;
-$primary800: #774a2b;
-
-// $primary: $primary500;
-// $secondary: #2c60ab;
-// $green: #43cb75;
-// $background: #f2eeeb;
-
 $blue: #3182ce;
 $orange: #ed8936;
 $green: #48bb78;
 $red: #e53e3e;
 
-$primary: $primary500;
-$secondary: #2c60ab;
+$primary: #816797;
+$secondary: #51557e;
 $info: $blue;
 $warning: $orange;
 $success: $green;
 $error: $red;
 $background: #f2eeeb;
 
-$title: $primary500;
+$title: $primary;
 $titleSecondary: $black;
 
 $text: $gray800;
-$textLight: $gray400;
+$textLight: #d6d5a8;

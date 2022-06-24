@@ -8,6 +8,7 @@
 :root {
   --white: #{$white};
   --black: #{$black};
+
   --gray50: #{$gray50};
   --gray100: #{$gray100};
   --gray200: #{$gray200};
@@ -19,18 +20,10 @@
   --gray800: #{$gray800};
 
   --primary: #{$primary};
+  --secondary: #{$secondary};
+
   --background: #{$background};
   --green: #{$green};
-
-  --primary50: #{$primary50};
-  --primary100: #{$primary100};
-  --primary200: #{$primary200};
-  --primary300: #{$primary300};
-  --primary400: #{$primary400};
-  --primary500: #{$primary500};
-  --primary600: #{$primary600};
-  --primary700: #{$primary700};
-  --primary800: #{$primary800};
 
   --title: #{$title};
   --titleSecondary: #{$titleSecondary};

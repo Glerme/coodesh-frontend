@@ -36,7 +36,6 @@ export const WordContextProvider = ({ children }: WordContextProviderProps) => {
   const [errors, setErrors] = useState<any | null>(null);
   const [loading, setLoading] = useState(false);
   const [favoriteWords, setFavoriteWords] = useState<string[]>([]);
-  const [wordList] = useState(() => generateWords(50));
 
   const setFavorites = (word: string) => {
     const parsedValue = JSON.stringify([...favoriteWords, word]);

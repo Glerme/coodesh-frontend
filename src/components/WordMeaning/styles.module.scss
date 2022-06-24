@@ -16,6 +16,24 @@
   color: colors.$white;
 }
 
+.favorite-button {
+  display: grid;
+  place-items: center;
+
+  background-color: transparent;
+  border: 0;
+
+  border-radius: 50%;
+
+  padding: 1rem;
+
+  max-width: 100px;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
 .word-container {
   border-bottom: 1px solid colors.$white;
 
@@ -50,7 +68,7 @@
   font-size: map.get(typography.$sizes, "b3");
   font-weight: map.get(typography.$weights, "b3");
 
-  color: colors.$green;
+  color: colors.$textLight;
 
   & > p {
     font-size: map.get(typography.$sizes, "b4");

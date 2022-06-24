@@ -1,5 +1,7 @@
 import type { Meanings } from "types/Meaning";
 
+import { FiStar } from "react-icons/fi";
+
 import styles from "./styles.module.scss";
 
 interface WordMeaningProps {
@@ -15,7 +17,14 @@ export const WordMeaning: React.FC<WordMeaningProps> = ({
 }) => {
   return (
     <div className={styles["meaning-container"]}>
-      <button onClick={() => handleFavoriteWord(word)}>Favoritos</button>
+      <div>
+        <button
+          className={styles["favorite-button"]}
+          onClick={() => handleFavoriteWord(word)}
+        >
+          <FiStar size={24} color="white" />
+        </button>
+      </div>
 
       <div className={styles["word-container"]}>
         <h1>{word}</h1>

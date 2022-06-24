@@ -11,15 +11,21 @@ export const WordFavorites: React.FC<WordFavoritesProps> = ({
 }) => {
   return (
     <div className={styles["word-list-container"]}>
-      {wordList?.map((word, i) => (
-        <div
-          key={i}
-          className={styles["word-content"]}
-          onClick={() => onClick(i)}
-        >
-          <p>{word}</p>
+      {wordList.length > 0 ? (
+        wordList?.map((word, i) => (
+          <div
+            key={i}
+            className={styles["word-content"]}
+            onClick={() => onClick(i)}
+          >
+            <p>{word}</p>
+          </div>
+        ))
+      ) : (
+        <div className={styles["empty-container"]}>
+          <h3>No favorite words</h3>
         </div>
-      ))}
+      )}
     </div>
   );
 };

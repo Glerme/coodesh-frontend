@@ -11,7 +11,7 @@ export const App = () => {
   return (
     <WordContextProvider>
       <ToastContainer />
-      <Router />;
+      <Router />
     </WordContextProvider>
   );
 };

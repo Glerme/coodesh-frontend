@@ -1,19 +1,20 @@
+import { useState } from "react";
+
 import { toast } from "react-toastify";
 
 import { useWord } from "hooks/useWord";
+import { generateWords } from "functions/generateWords";
 
 import { Player } from "components/Player";
 import { Loading } from "components/Loading";
 import { TabList } from "components/TabList";
 import { WordList } from "components/WordList";
 import { WordMeaning } from "components/WordMeaning";
-import { NextPreviousWords } from "components/NextWord";
 import { WordFavorites } from "components/WordFavorites";
 import { ErrorComponent } from "components/ErrorComponent";
+import { NextPreviousWords } from "components/NextPreviousWords";
 
 import styles from "./styles.module.scss";
-import { generateWords } from "functions/generateWords";
-import { useState } from "react";
 
 export const HomeView: React.FC = () => {
   const [words, setWords] = useState(() => generateWords(100));
@@ -35,15 +36,13 @@ export const HomeView: React.FC = () => {
     console.log(words);
   };
 
-  console.log(wordStep);
-
-  const handleNextWord = async (word: string) => {
+  const getNextWord = async (word: string) => {
     setWords((oldstate) => oldstate.filter((wordOld) => wordOld !== word));
 
     await getOneWord(word);
   };
 
-  const handleFavoriteWord = (word: string) => {
+  const addFavoriteWord = (word: string) => {
     setFavorites(word);
 
     toast.success(`Added word to favorites list`, {
@@ -69,12 +68,12 @@ export const HomeView: React.FC = () => {
 
   return (
     <main className={styles["view-container"]}>
-      <section className={styles["left-container"]}>
+      <section className={styles["containers"]}>
         <div className={styles["word-container"]}>
           {data?.words?.map(({ meanings, word }, i) => (
             <WordMeaning
               key={i}
-              handleFavoriteWord={handleFavoriteWord}
+              handleFavoriteWord={addFavoriteWord}
               meaning={meanings}
               word={word}
             />
@@ -90,22 +89,23 @@ export const HomeView: React.FC = () => {
               ))
           )}
         </div>
-
-        <NextPreviousWords
-          getNextWord={handleNextStep}
-          getPrevious={handlePreviuousStep}
-        />
       </section>
 
-      <section className={styles["right-container"]}>
-        <TabList labelTabs={["Word List", "Favorites"]}>
-          <WordList key={0} wordList={words} onClick={handleNextWord} />
-          <WordFavorites
-            key={1}
-            onClick={removeFavoriteWord}
-            wordList={favoriteWords}
+      <section>
+        <div className={styles["sticky-container"]}>
+          <TabList labelTabs={["Word List", "Favorites"]}>
+            <WordList key={0} wordList={words} onClick={getNextWord} />
+            <WordFavorites
+              key={1}
+              onClick={removeFavoriteWord}
+              wordList={favoriteWords}
+            />
+          </TabList>
+          <NextPreviousWords
+            getNextWord={handleNextStep}
+            getPrevious={handlePreviuousStep}
           />
-        </TabList>
+        </div>
       </section>
     </main>
   );

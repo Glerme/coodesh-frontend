@@ -1,15 +1,9 @@
-@use 'styles/colors.scss';
+@use "styles/colors.scss";
 
 .btn-primary {
   background: colors.$primary;
   border: 2px solid colors.$primary;
   color: colors.$white;
-}
-
-.btn-primary50 {
-  background: colors.$primary50;
-  border: 2px solid colors.$primary50;
-  color: colors.$primary700;
 }
 
 .btn-secondary {
@@ -19,17 +13,6 @@
 }
 
 .btn-outlined-primary {
-  background: transparent;
-  border: 2px solid colors.$primary;
-  color: colors.$primary;
-
-  &:hover {
-    background: colors.$primary;
-    color: colors.$white;
-  }
-}
-
-.btn-outlined-primary50 {
   background: transparent;
   border: 2px solid colors.$primary;
   color: colors.$primary;
