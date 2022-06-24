@@ -2,6 +2,8 @@
 @use "styles/breakpoints.scss";
 
 .navbar-container {
+  padding: 1rem;
+
   margin: 0 auto;
   width: 100%;
 
@@ -95,6 +97,16 @@
 
   & > li {
     padding: 0.5rem;
+
+    &:last-child {
+      margin-left: auto;
+    }
+
+    @include breakpoints.and-up(md) {
+      &:first-child {
+        margin-left: auto;
+      }
+    }
 
     & > a {
       color: colors.$text;

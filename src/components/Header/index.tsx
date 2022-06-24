@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { Button } from "components/Button";
 
 import { FiMenu } from "react-icons/fi";
 
@@ -14,8 +15,6 @@ export const Header: React.FC<HeaderProps> = ({ isMenuOpen, onToggle }) => {
     <>
       <nav className={classNames(styles["navbar-container"])}>
         <div className={styles["logo-container"]}>
-          <img src="/logo.svg" alt="Logo" width="80" height="80" />
-
           <FiMenu
             size={30}
             color={"#ec6608"}
@@ -42,6 +41,10 @@ export const Header: React.FC<HeaderProps> = ({ isMenuOpen, onToggle }) => {
               </li>
               <li>
                 <a href="#">Contato</a>
+              </li>
+
+              <li>
+                <Button>Logout</Button>
               </li>
             </ul>
           </div>
