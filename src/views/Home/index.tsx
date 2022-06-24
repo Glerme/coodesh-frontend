@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useWord } from "hooks/useWord";
 import { generateWords } from "functions/generateWords";
 
-import { Player } from "components/Player";
+import { MusicPlayer } from "components/Player";
 import { Loading } from "components/Loading";
 import { TabList } from "components/TabList";
 import { WordList } from "components/WordList";
@@ -24,16 +24,31 @@ export const HomeView: React.FC = () => {
   const { data, favoriteWords, getOneWord, setFavorites, removeFavorites } =
     useWord();
 
-  const handleNextStep = () => {
+  const handleNextStep = async () => {
     const word = generateWords(1);
+
+    await getOneWord(word[0]);
 
     setWordStep((oldState) => [...oldState, [...word]]);
   };
 
-  const handlePreviuousStep = () => {
-    const words = wordStep.pop();
+  const handlePreviuousStep = async () => {
+    if (wordStep?.length > 1) {
+      const newArrayWords = [...wordStep];
+      newArrayWords.pop();
 
-    console.log(words);
+      const lastWord = newArrayWords[newArrayWords.length - 1];
+
+      await getOneWord(lastWord[0]);
+
+      setWordStep(newArrayWords);
+
+      return;
+    }
+
+    toast.warn("Not have more words", {
+      theme: "dark",
+    });
   };
 
   const getNextWord = async (word: string) => {
@@ -85,7 +100,7 @@ export const HomeView: React.FC = () => {
             ({ phonetics }) =>
               phonetics.length > 0 &&
               phonetics?.map((phonetic, i) => (
-                <Player key={i} phonetic={phonetic} />
+                <MusicPlayer key={i} phonetic={phonetic} />
               ))
           )}
         </div>

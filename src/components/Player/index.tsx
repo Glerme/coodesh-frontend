@@ -1,11 +1,12 @@
 import { Phonetics } from "types/Phonetic";
+
 import styles from "./styles.module.scss";
 
 interface PlayerProps {
   phonetic: Phonetics;
 }
 
-export const Player: React.FC<PlayerProps> = ({ phonetic }) => {
+export const MusicPlayer: React.FC<PlayerProps> = ({ phonetic }) => {
   return (
     <div className={styles["container-audio"]}>
       <div>
