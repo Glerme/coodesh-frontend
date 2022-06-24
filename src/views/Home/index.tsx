@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 import { useWord } from "hooks/useWord";
 import { generateWords } from "functions/generateWords";
 
-import { MusicPlayer } from "components/Player";
 import { Loading } from "components/Loading";
 import { TabList } from "components/TabList";
 import { WordList } from "components/WordList";
+import { MusicPlayer } from "components/Player";
 import { WordMeaning } from "components/WordMeaning";
 import { WordFavorites } from "components/WordFavorites";
 import { ErrorComponent } from "components/ErrorComponent";
@@ -19,10 +19,12 @@ import styles from "./styles.module.scss";
 export const HomeView: React.FC = () => {
   const [words, setWords] = useState(() => generateWords(100));
 
-  const [wordStep, setWordStep] = useState<string[][]>([[]]);
-
   const { data, favoriteWords, getOneWord, setFavorites, removeFavorites } =
     useWord();
+
+  const [wordStep, setWordStep] = useState<string[][]>([
+    data?.words[0]?.word ? [...data?.words[0]?.word] : [""],
+  ]);
 
   const handleNextStep = async () => {
     const word = generateWords(1);
@@ -39,9 +41,17 @@ export const HomeView: React.FC = () => {
 
       const lastWord = newArrayWords[newArrayWords.length - 1];
 
-      await getOneWord(lastWord[0]);
+      if (newArrayWords?.length > 1) {
+        await getOneWord(lastWord[0]);
 
-      setWordStep(newArrayWords);
+        setWordStep(newArrayWords);
+
+        return;
+      }
+
+      toast.warn("Not have more words", {
+        theme: "dark",
+      });
 
       return;
     }
