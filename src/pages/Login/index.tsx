@@ -1,16 +1,18 @@
 import { useNavigate } from "react-router";
 
-import { Button } from "components/Button";
+import { SocialButton } from "components/SocialButton";
+
+import styles from "./styles.module.scss";
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
     <main className="centralized-container">
-      <div>
-        <input type="text" />
-        <input type="text" />
-        <Button onClick={() => navigate("/home")}>Entrar</Button>
+      <div className={styles["login-container"]}>
+        <div className={styles["login-content"]}>
+          <SocialButton>Login with google</SocialButton>
+        </div>
       </div>
     </main>
   );
