@@ -60,7 +60,7 @@ html {
 }
 
 body {
-  background: #f2eeeb;
+  background: var(--background);
   font-family: "Manrope", sans-serif;
   -webkit-font-smoothing: antialiased;
 }

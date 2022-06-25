@@ -1,6 +1,7 @@
 import classNames from "classnames";
 
 import { Button } from "components/Button";
+import { useAuth } from "hooks/useAuth";
 
 import { FiMenu } from "react-icons/fi";
 
@@ -12,13 +13,15 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ isMenuOpen, onToggle }) => {
+  const { signOut } = useAuth();
+
   return (
     <>
-      <nav className={classNames(styles["navbar-container"])}>
+      <nav className={styles["navbar-container"]}>
         <div className={styles["logo-container"]}>
           <FiMenu
             size={30}
-            color={"#ec6608"}
+            color={"#b395cc"}
             onClick={onToggle}
             className={styles["menu-button"]}
           />
@@ -38,14 +41,7 @@ export const Header: React.FC<HeaderProps> = ({ isMenuOpen, onToggle }) => {
               )}
             >
               <li>
-                <a href="#">Sobre</a>
-              </li>
-              <li>
-                <a href="#">Contato</a>
-              </li>
-
-              <li>
-                <Button>Logout</Button>
+                <Button onClick={signOut}>Logout</Button>
               </li>
             </ul>
           </div>

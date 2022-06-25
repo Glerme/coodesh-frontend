@@ -1,11 +1,11 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes } from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  background?: 'primary' | 'secondary' | 'primary50';
+  background?: "primary" | "secondary" | "primary50";
   isOutlined?: boolean;
   icon?: () => JSX.Element;
   children: React.ReactNode;
@@ -13,7 +13,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button: React.FC<ButtonProps> = ({
-  background = 'primary',
+  background = "primary",
   isOutlined = false,
   children,
   icon: Icon,
@@ -22,9 +22,9 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       className={classNames(
-        styles['button-container'],
+        styles["button-container"],
         `${background ? styles[`btn-${background}`] : styles[`btn-primary`]}`,
-        `${isOutlined ? styles[`btn-outlined-${background}`] : ''}`,
+        `${isOutlined ? styles[`btn-outlined-${background}`] : ""}`
       )}
       onClick={onClick}
     >

@@ -1,38 +1,23 @@
-import { useEffect } from "react";
-
-import { gapi } from "gapi-script";
-import { useNavigate } from "react-router";
-import { GoogleLogin } from "react-google-login";
+import {
+  GoogleLogin,
+  GoogleLoginResponse,
+  GoogleLoginResponseOffline,
+} from "react-google-login";
 
 import styles from "./styles.module.scss";
 
-interface SocialLoginProps {}
+interface SocialLoginProps {
+  handleLogin: (
+    res: GoogleLoginResponse | GoogleLoginResponseOffline
+  ) => Promise<void>;
+}
 
-export const SocialButton: React.FC<SocialLoginProps> = ({}) => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    gapi.load("client:auth2", () => {
-      gapi.client.init({
-        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-        plugin_name: "chat",
-      });
-    });
-  }, []);
-
-  const handleLogin = async (resp: any) => {
-    console.log(resp);
-
-    if (resp.accessToken) {
-      navigate("/home");
-    }
-  };
-
+export const SocialButton: React.FC<SocialLoginProps> = ({ handleLogin }) => {
   return (
     <GoogleLogin
       clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ""}
       buttonText="Login with Google"
-      onSuccess={handleLogin}
+      onSuccess={(res) => handleLogin(res)}
       onFailure={handleLogin}
       cookiePolicy={"single_host_origin"}
       className={styles["social-button"]}

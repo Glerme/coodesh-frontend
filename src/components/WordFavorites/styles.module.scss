@@ -7,6 +7,9 @@
   align-items: center;
   flex-wrap: wrap;
 
+  background-color: colors.$secondary;
+  border-radius: 6px;
+
   gap: 0.5rem;
 
   padding: 1rem;
@@ -34,14 +37,14 @@
 }
 
 .word-content {
-  background-color: colors.$secondary;
+  background-color: colors.$primary;
   border-radius: 6px;
 
   color: colors.$white;
 
   cursor: pointer;
 
-  padding: 1rem;
+  padding: 0.3rem 0.5rem;
 
   text-transform: capitalize;
 

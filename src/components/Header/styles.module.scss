@@ -7,6 +7,8 @@
   margin: 0 auto;
   width: 100%;
 
+  background-color: colors.$secondary;
+
   @include breakpoints.and-up(md) {
     display: flex;
     justify-content: space-between;
@@ -109,12 +111,12 @@
     }
 
     & > a {
-      color: colors.$text;
+      color: colors.$white;
       text-decoration: none;
 
       &:hover {
-        color: colors.$primary;
-        transition: color 0.3s ease-in-out;
+        filter: brightness(0.8);
+        transition: filter 0.3s ease-in-out;
       }
     }
   }

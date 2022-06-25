@@ -14,15 +14,17 @@
   border: 1px solid colors.$gray500;
   border-radius: 6px;
 
+  background-color: colors.$secondary;
+
   & > div {
     width: 100%;
     border-radius: 6px;
 
     & > p {
-      color: colors.$black;
+      color: colors.$white;
 
       & > span {
-        color: colors.$primary;
+        color: colors.$textLight;
 
         font-style: italic;
 
@@ -32,6 +34,7 @@
     }
 
     & > audio {
+      margin-top: 0.5rem;
       width: 100%;
     }
   }

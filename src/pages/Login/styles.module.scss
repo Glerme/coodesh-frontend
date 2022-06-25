@@ -16,5 +16,14 @@
   place-items: center;
   gap: 1rem;
 
-  width: 100%;
+  padding: 1rem;
+
+  border: 1px solid colors.$primary;
+  border-radius: 6px;
+
+  background-color: colors.$primary;
+}
+
+.title-container {
+  color: colors.$white;
 }
