@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({ isMenuOpen, onToggle }) => {
   return (
     <>
       <nav className={styles["navbar-container"]}>
-        <div className={styles["logo-container"]}>
+        <div className={styles["menu-button-container"]}>
           <FiMenu
             size={30}
             color={"#b395cc"}

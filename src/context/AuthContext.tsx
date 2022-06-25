@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
@@ -38,21 +38,56 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     try {
       setLoading(true);
 
+      const parsedValue = JSON.stringify(response);
+
+      localStorage.setItem("user", parsedValue);
+
       setUser(response);
     } catch (error) {
       console.error(error);
 
-      setUser(null);
+      toast.error("Occurred an Error");
 
-      toast.error("Occurred  a error");
+      setUser(null);
     } finally {
       setLoading(false);
     }
   };
 
   const signOut = async () => {
-    setUser(null);
+    try {
+      setLoading(true);
+
+      localStorage.removeItem("user");
+
+      setUser(null);
+    } catch (error) {
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const refreshUser = () => {
+    try {
+      setLoading(true);
+      const locaStorageUser = localStorage.getItem("user");
+
+      if (locaStorageUser) {
+        setUser(JSON.parse(locaStorageUser));
+      }
+    } catch (error) {
+      toast.error("Occurred an Error");
+
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    refreshUser();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ signIn, signOut, user, loading }}>

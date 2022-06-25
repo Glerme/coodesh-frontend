@@ -61,6 +61,12 @@ export const HomeView: React.FC = () => {
     });
   };
 
+  const getListOfWords = async (numberOfWords: number) => {
+    const listOfWords = generateWords(numberOfWords);
+
+    setWords((oldState) => [...oldState, ...listOfWords]);
+  };
+
   const getNextWord = async (word: string) => {
     setWords((oldstate) => oldstate.filter((wordOld) => wordOld !== word));
 
@@ -116,21 +122,24 @@ export const HomeView: React.FC = () => {
         </div>
       </section>
 
-      <section>
-        <div className={styles["sticky-container"]}>
-          <TabList labelTabs={["Word List", "Favorites"]}>
-            <WordList key={0} wordList={words} onClick={getNextWord} />
-            <WordFavorites
-              key={1}
-              onClick={removeFavoriteWord}
-              wordList={favoriteWords}
-            />
-          </TabList>
-          <NextPreviousWords
-            getNextWord={handleNextStep}
-            getPrevious={handlePreviuousStep}
+      <section className={styles["sticky-container"]}>
+        <TabList labelTabs={["Word List", "Favorites"]}>
+          <WordList
+            key={0}
+            wordList={words}
+            handleWordFetch={getNextWord}
+            fetchMoreWords={() => getListOfWords(100)}
           />
-        </div>
+          <WordFavorites
+            key={1}
+            onClick={removeFavoriteWord}
+            wordList={favoriteWords}
+          />
+        </TabList>
+        <NextPreviousWords
+          getNextWord={handleNextStep}
+          getPrevious={handlePreviuousStep}
+        />
       </section>
     </main>
   );

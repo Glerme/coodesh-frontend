@@ -20,6 +20,20 @@
 
   width: 100%;
   height: 100%;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: colors.$primary;
+    border-radius: 6px;
+  }
 }
 
 .empty-container {
@@ -51,4 +65,13 @@
   &:hover {
     filter: brightness(0.9);
   }
+}
+
+.fetch-more-container {
+  display: grid;
+  place-items: center;
+
+  margin-top: 1rem;
+
+  width: 100%;
 }

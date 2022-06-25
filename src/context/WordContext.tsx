@@ -63,7 +63,7 @@ export const WordContextProvider = ({ children }: WordContextProviderProps) => {
     }
   };
 
-  const getListWords = async () => {
+  const getWord = async () => {
     try {
       setLoading(true);
 
@@ -97,10 +97,10 @@ export const WordContextProvider = ({ children }: WordContextProviderProps) => {
     }
   };
 
-  const refetch = getListWords;
+  const refetch = getWord;
 
   useEffect(() => {
-    getListWords();
+    getWord();
     verifyFavoritesWords();
   }, []);
 
